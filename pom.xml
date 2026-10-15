@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>quyvera-common</module>
+        <module>quyvera-gateway</module>
     </modules>
 
     <properties>
@@ -27,6 +28,8 @@
         <mapstruct-plus.version>1.5.3</mapstruct-plus.version>
         <mapstruct-lombok.version>0.2.0</mapstruct-lombok.version>
         <mybatis-plus.version>3.5.17</mybatis-plus.version>
+        <commons-lang3.version>3.21.0</commons-lang3.version>
+        <jjwt.version>0.13.0</jjwt.version>
     </properties>
 
     <dependencyManagement>
@@ -73,6 +76,21 @@
                 <groupId>io.github.linpeilie</groupId>
                 <artifactId>mapstruct-plus-spring-boot-starter</artifactId>
                 <version>${mapstruct-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
