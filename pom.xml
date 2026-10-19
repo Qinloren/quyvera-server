@@ -11,6 +11,7 @@
     <modules>
         <module>quyvera-common</module>
         <module>quyvera-gateway</module>
+        <module>quyvera-user</module>
     </modules>
 
     <properties>
@@ -76,6 +77,11 @@
                 <groupId>io.github.linpeilie</groupId>
                 <artifactId>mapstruct-plus-spring-boot-starter</artifactId>
                 <version>${mapstruct-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot4-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
