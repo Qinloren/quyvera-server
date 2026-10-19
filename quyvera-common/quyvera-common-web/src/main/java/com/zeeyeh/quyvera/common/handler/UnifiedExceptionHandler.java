@@ -2,8 +2,8 @@ package com.zeeyeh.quyvera.common.handler;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
-import com.zeeyeh.quyvera.common.entity.Result;
-import com.zeeyeh.quyvera.common.exception.BusinessExceptions;
+import com.zeeyeh.quyvera.common.core.entity.Result;
+import com.zeeyeh.quyvera.common.core.exception.BusinessExceptions;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
  * 统一异常处理类
@@ -49,8 +50,11 @@ public class UnifiedExceptionHandler {
         return Result.error("参数不合法");
     }
 
-    @ExceptionHandler(NoHandlerFoundException.class)
-    public Result<Void> handleNoHandlerFoundException(NoHandlerFoundException e, HttpServletRequest request) {
+    @ExceptionHandler({
+            NoHandlerFoundException.class,
+            NoResourceFoundException.class
+    })
+    public Result<Void> handleNoHandlerFoundException(Exception e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         log.error("请求地址: \"{}\", 不存在", requestURI);
         return Result.error("请求地址不合法");

@@ -1,6 +1,6 @@
-package com.zeeyeh.quyvera.common.entity;
+package com.zeeyeh.quyvera.common.core.entity;
 
-import com.zeeyeh.quyvera.common.constant.RequestCodeStatus;
+import com.zeeyeh.quyvera.common.core.constant.RequestCodeStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

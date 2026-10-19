@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 import tools.jackson.databind.node.ArrayNode;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@Component
 @AllArgsConstructor
 public class PayloadDecorator {
 

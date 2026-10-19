@@ -1,4 +1,4 @@
-package com.zeeyeh.quyvera.common.utils;
+package com.zeeyeh.quyvera.common.core.utils;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;

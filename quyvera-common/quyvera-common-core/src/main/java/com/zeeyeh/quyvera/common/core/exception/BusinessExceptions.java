@@ -1,4 +1,4 @@
-package com.zeeyeh.quyvera.common.exception;
+package com.zeeyeh.quyvera.common.core.exception;
 
 import cn.hutool.core.text.StrFormatter;
 import lombok.Data;

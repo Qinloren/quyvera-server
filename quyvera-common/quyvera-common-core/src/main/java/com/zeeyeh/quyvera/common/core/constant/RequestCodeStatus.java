@@ -1,4 +1,4 @@
-package com.zeeyeh.quyvera.common.constant;
+package com.zeeyeh.quyvera.common.core.constant;
 
 /**
  * 请求响应状态码
