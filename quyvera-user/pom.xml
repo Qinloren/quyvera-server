@@ -15,18 +15,36 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <quyvera-common.version>0.0.1</quyvera-common.version>
+        <quyvera-common-core.version>0.0.1</quyvera-common-core.version>
+        <quyvera-common-web.version>0.0.1</quyvera-common-web.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.zeeyeh</groupId>
-            <artifactId>quyvera-common</artifactId>
-            <version>${quyvera-common.version}</version>
+            <artifactId>quyvera-common-core</artifactId>
+            <version>${quyvera-common-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zeeyeh</groupId>
+            <artifactId>quyvera-common-web</artifactId>
+            <version>${quyvera-common-web.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-spring-boot4-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
         </dependency>
     </dependencies>
 </project>
