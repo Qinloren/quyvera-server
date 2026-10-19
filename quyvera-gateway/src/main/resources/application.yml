@@ -1,0 +1,8 @@
+server:
+  port: 23334
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          enabled: true
