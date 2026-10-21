@@ -4,8 +4,10 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.zeeyeh.quyvera.common.core.entity.Result;
 import com.zeeyeh.quyvera.common.core.exception.BusinessExceptions;
+import com.zeeyeh.quyvera.common.utils.MessageUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.MessageSource;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,18 +24,25 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 @RestControllerAdvice
 public class UnifiedExceptionHandler {
 
+    private final MessageSource messageSource;
+
+    public UnifiedExceptionHandler(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    @ExceptionHandler(BusinessExceptions.class)
+    public Result<Void> handleBusinessException(BusinessExceptions e, HttpServletRequest request) {
+        log.error("请求地址: {}{}", request.getRequestURI(), e.getDetailMessage());
+        Integer code = e.getCode();
+        String message = MessageUtil.translate(messageSource, e.getMessage());
+        return ObjectUtil.isNotNull(code) ? Result.any(code, message, null) : Result.error(message);
+    }
+
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public Result<Void> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         log.error("请求地址: \"{}\",不支持的请求方法: \"{}\"", requestURI, e.getMethod());
         return Result.error(e.getMessage());
-    }
-
-    @ExceptionHandler(BusinessExceptions.class)
-    public Result<Void> handleBusinessException(BusinessExceptions e, HttpServletRequest request) {
-        log.error(e.getDetailMessage());
-        Integer code = e.getCode();
-        return ObjectUtil.isNotNull(code) ? Result.any(code, e.getMessage(), null) : Result.error(e.getMessage());
     }
 
     @ExceptionHandler(MissingPathVariableException.class)
