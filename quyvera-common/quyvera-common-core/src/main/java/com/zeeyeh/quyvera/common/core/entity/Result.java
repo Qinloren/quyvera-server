@@ -1,5 +1,6 @@
 package com.zeeyeh.quyvera.common.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zeeyeh.quyvera.common.core.constant.RequestCodeStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result<T> implements Serializable {
 
     @Serial
