@@ -2,18 +2,23 @@ package com.zeeyeh.quyvera.user.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.zeeyeh.quyvera.user.enums.UserStatus;
+import com.zeeyeh.quyvera.user.vo.UserVo;
+import io.github.linpeilie.annotations.AutoMapper;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Data;
 
 /**
  * 用户表
  */
-@TableName(value ="qy_user")
 @Data
+@TableName(value ="qy_user")
+@AutoMapper(target = UserVo.class)
 public class User implements Serializable {
 
     @Serial
@@ -54,7 +59,7 @@ public class User implements Serializable {
      * 状态：0=正常、1=禁用、2=未激活
      */
     @TableField(value = "status")
-    private Integer status;
+    private UserStatus status;
 
     /**
      * 注册IP
@@ -90,7 +95,8 @@ public class User implements Serializable {
      * 是否删除：0=未删除，1=已删除
      */
     @TableField(value = "deleted")
-    private Integer deleted;
+    @TableLogic
+    private Boolean deleted;
 
     @Override
     public boolean equals(Object that) {
