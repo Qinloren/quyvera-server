@@ -81,6 +81,11 @@
                 <version>${mapstruct-plus.version}</version>
             </dependency>
             <dependency>
+                <groupId>io.github.linpeilie</groupId>
+                <artifactId>mapstruct-plus-processor</artifactId>
+                <version>${mapstruct-plus.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-spring-boot4-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
