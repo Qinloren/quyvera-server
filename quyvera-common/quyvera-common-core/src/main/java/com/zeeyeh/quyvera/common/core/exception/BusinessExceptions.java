@@ -1,6 +1,7 @@
 package com.zeeyeh.quyvera.common.core.exception;
 
 import cn.hutool.core.text.StrFormatter;
+import com.zeeyeh.quyvera.common.core.constant.ErrorCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,6 +21,11 @@ public class BusinessExceptions extends RuntimeException {
     private Integer code;
 
     private String detailMessage;
+
+    public BusinessExceptions(ErrorCode errorCode) {
+        super(errorCode.getKey());
+        this.code = errorCode.getCode();
+    }
 
     public BusinessExceptions(Integer code, String message) {
         super(message);
