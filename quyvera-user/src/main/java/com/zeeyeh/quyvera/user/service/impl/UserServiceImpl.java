@@ -73,6 +73,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    public UserVo getUserById(Long userId) {
+        User user = this.getById(userId);
+        return userConvert.toVo(user);
+    }
+
+    @Override
     public UserVo getUserByUsername(String username) {
         User user = this.lambdaQuery()
                 .eq(User::getUsername, username)
