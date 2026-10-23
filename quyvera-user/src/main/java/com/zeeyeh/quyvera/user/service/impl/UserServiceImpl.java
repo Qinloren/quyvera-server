@@ -11,10 +11,12 @@ import com.zeeyeh.quyvera.user.convert.UserConvert;
 import com.zeeyeh.quyvera.user.domain.User;
 import com.zeeyeh.quyvera.user.dto.UserCreateDto;
 import com.zeeyeh.quyvera.user.dto.UserPageQueryDto;
+import com.zeeyeh.quyvera.user.dto.UserProfileCreateDto;
 import com.zeeyeh.quyvera.user.dto.UserUpdateDto;
 import com.zeeyeh.quyvera.user.enums.UserErrorCode;
 import com.zeeyeh.quyvera.user.enums.UserStatus;
 import com.zeeyeh.quyvera.user.mapper.UserMapper;
+import com.zeeyeh.quyvera.user.service.UserProfileService;
 import com.zeeyeh.quyvera.user.service.UserService;
 import com.zeeyeh.quyvera.user.vo.UserVo;
 import org.apache.commons.lang3.StringUtils;
@@ -34,11 +36,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private final UserConvert userConvert;
     private final Snowflake snowflake;
     private final PasswordEncoder passwordEncoder;
+    private final UserProfileService userProfileService;
 
-    public UserServiceImpl(UserConvert userConvert, Snowflake snowflake, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserConvert userConvert, Snowflake snowflake, PasswordEncoder passwordEncoder, UserProfileService userProfileService) {
         this.userConvert = userConvert;
         this.snowflake = snowflake;
         this.passwordEncoder = passwordEncoder;
+        this.userProfileService = userProfileService;
     }
 
     @Override
@@ -51,6 +55,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setUpdateTime(LocalDateTime.now());
         user.setId(snowflake.nextId());
         this.save(user);
+        userProfileService.createProfile(
+                new UserProfileCreateDto(
+                        user.getId(),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                )
+        );
         return userConvert.toVo(user);
     }
 
