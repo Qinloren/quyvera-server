@@ -98,7 +98,7 @@ public class UserProfile implements Serializable {
      * 是否删除：0=未删除、1=已删除
      */
     @TableField(value = "deleted")
-    private Integer deleted;
+    private Boolean deleted;
 
     @Override
     public boolean equals(Object that) {
