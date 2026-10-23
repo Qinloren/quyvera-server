@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.zeeyeh.quyvera.user.enums.UserBanStatus;
 import lombok.Data;
 
 /**
@@ -60,7 +62,7 @@ public class UserBan implements Serializable {
      * 状态：0=封禁中、1=已解封
      */
     @TableField(value = "status")
-    private Integer status;
+    private UserBanStatus status;
 
     /**
      * 创建时间
