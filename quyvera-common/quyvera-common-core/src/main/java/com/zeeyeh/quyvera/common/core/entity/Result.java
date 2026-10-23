@@ -120,7 +120,7 @@ public class Result<T> implements Serializable {
      * @param <T> 数据类型
      */
     public static <T> Result<T> any(int code, String message, T data) {
-        return new Result<T>(code, message, data, System.currentTimeMillis());
+        return new Result<>(code, message, data, System.currentTimeMillis());
     }
 
     /**

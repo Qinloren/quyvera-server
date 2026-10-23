@@ -1,10 +1,6 @@
 package com.zeeyeh.quyvera.common.config;
 
 import com.zeeyeh.quyvera.common.config.properties.AppSecurityProperties;
-import com.zeeyeh.quyvera.common.filter.AuthorizationFilter;
-import com.zeeyeh.quyvera.common.handler.UnifiedAccessDeniedHandler;
-import com.zeeyeh.quyvera.common.handler.UnifiedAuthenticationHandler;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -14,12 +10,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -38,10 +32,10 @@ import java.util.List;
 public class AppSecurityConfiguration {
 
     private final AppSecurityProperties properties;
-    @Value("${app.token.secret}")
-    private String secret;
-    @Value("${app.token.expire}")
-    private int expire;
+//    @Value("${app.token.secret}")
+//    private String secret;
+//    @Value("${app.token.expire}")
+//    private int expire;
 
     public AppSecurityConfiguration(AppSecurityProperties properties) {
         this.properties = properties;

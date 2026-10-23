@@ -25,9 +25,8 @@ public interface ErrorCode {
      * @param code 目标值
      * @return 枚举对象
      * @param <E> 枚举类型
-     * @param <T> 枚举值类型
      */
-    static <E extends Enum<E> & ErrorCode, T> E fromCode(Class<E> enumClass, Integer code) {
+    static <E extends Enum<E> & ErrorCode> E fromCode(Class<E> enumClass, Integer code) {
         if (code == null) {
             return null;
         }

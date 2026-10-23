@@ -2,6 +2,7 @@ package com.zeeyeh.quyvera.common.factory;
 
 import com.zeeyeh.quyvera.common.config.properties.AppLocaleProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Primary;
@@ -42,7 +43,7 @@ public class LocaleFactory extends AbstractMessageSource implements Initializing
     }
 
     @Override
-    protected @Nullable MessageFormat resolveCode(String code, Locale locale) {
+    protected @Nullable MessageFormat resolveCode(@NonNull String code, @NonNull Locale locale) {
         for (Locale item : localeChain(locale)) {
             Properties properties = bundles.get(item);
             if (properties != null && properties.containsKey(code)) {

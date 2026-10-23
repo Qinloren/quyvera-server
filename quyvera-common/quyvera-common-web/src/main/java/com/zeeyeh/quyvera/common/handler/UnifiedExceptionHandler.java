@@ -56,6 +56,7 @@ public class UnifiedExceptionHandler {
     public Result<Void> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         log.error("请求地址: \"{}\", 参数类型不匹配", requestURI);
+        log.error("堆栈跟踪: ", e);
         return Result.error("参数不合法");
     }
 
@@ -66,6 +67,7 @@ public class UnifiedExceptionHandler {
     public Result<Void> handleNoHandlerFoundException(Exception e, HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         log.error("请求地址: \"{}\", 不存在", requestURI);
+        log.error("堆栈跟踪: ", e);
         return Result.error("请求地址不合法");
     }
 

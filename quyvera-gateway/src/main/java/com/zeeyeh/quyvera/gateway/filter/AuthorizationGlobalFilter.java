@@ -1,6 +1,7 @@
 package com.zeeyeh.quyvera.gateway.filter;
 
 import com.zeeyeh.quyvera.gateway.config.properties.GatewaySecurityProperties;
+import org.jspecify.annotations.NullMarked;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -17,6 +18,7 @@ import java.util.List;
  * @author Qinloren
  * @date 2026/10/20 19:50
  */
+@NullMarked
 @Component
 public class AuthorizationGlobalFilter implements GlobalFilter, Ordered {
 
@@ -45,6 +47,10 @@ public class AuthorizationGlobalFilter implements GlobalFilter, Ordered {
                             .build();
                     return chain.filter(exchange.mutate().request(mutated).build());
                 })
+                .switchIfEmpty(Mono.defer(() -> {
+                    exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                    return exchange.getResponse().setComplete();
+                }))
                 .onErrorResume(e -> {
                     exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                     return exchange.getResponse().setComplete();
