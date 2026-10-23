@@ -7,11 +7,15 @@ spring:
       - "optional:nacos:quyvera.yaml"
   application:
     name: quyvera-user
+  grpc:
+    server:
+      port: 24335
   cloud:
     nacos:
       discovery:
         enabled: true
         server-addr: ${NACOS_SERVER_HOST:localhost}:${NACOS_SERVER_PORT:8848}
+        port: ${spring.grpc.server.port:24335}
         username: ${NACOS_USERNAME:nacos}
         password: ${NACOS_PASSWORD:nacos}
         namespace: ${NACOS_NAMESPACE:public}
