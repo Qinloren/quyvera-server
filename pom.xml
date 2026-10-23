@@ -13,6 +13,7 @@
         <module>quyvera-gateway</module>
         <module>quyvera-user</module>
         <module>quyvera-user-api</module>
+        <module>quyvera-auth</module>
     </modules>
 
     <properties>
@@ -32,7 +33,9 @@
         <mybatis-plus.version>3.5.17</mybatis-plus.version>
         <commons-lang3.version>3.21.0</commons-lang3.version>
         <jjwt.version>0.13.0</jjwt.version>
+        <protobuf.version>4.36.2</protobuf.version>
         <grpc.version>1.85.0</grpc.version>
+        <spring-boot-grpc.version>1.0.3</spring-boot-grpc.version>
     </properties>
 
     <dependencyManagement>
@@ -64,6 +67,18 @@
                 <version>${hutool.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.grpc</groupId>
+                <artifactId>spring-grpc-server-spring-boot-starter</artifactId>
+                <version>${spring-boot-grpc.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.grpc</groupId>
+                <artifactId>spring-grpc-client-spring-boot-starter</artifactId>
+                <version>${spring-boot-grpc.version}</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
