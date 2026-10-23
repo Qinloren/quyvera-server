@@ -31,9 +31,9 @@ public interface UserConvert {
     UserVo toVo(User user);
 
     /**
-     * 将实体对象转换为用户视图对象
-     * @param users 实体对象列表
-     * @return 用户视图对象
+     * 将用户实体列表转换为用户视图列表
+     * @param users 实体视图列表
+     * @return 用户视图列表
      */
     List<UserVo> toVoList(List<User> users);
 }
