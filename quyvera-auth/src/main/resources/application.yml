@@ -1,0 +1,34 @@
+server:
+  port: 23336
+spring:
+  config:
+    import:
+      - "nacos:${spring.application.name}.yaml"
+      - "optional:nacos:quyvera.yaml"
+  application:
+    name: quyvera-auth
+  grpc:
+    client:
+      channels:
+        quyvera-user:
+          address: discovery:///quyvera-user
+          negotiation-type: plaintext
+          default-load-balancing-policy: round-robin
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: ${NACOS_SERVER_HOST:localhost}:${NACOS_SERVER_PORT:8848}
+        port: ${spring.grpc.server.port:24335}
+        username: ${NACOS_USERNAME:nacos}
+        password: ${NACOS_PASSWORD:nacos}
+        namespace: ${NACOS_NAMESPACE:public}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+      config:
+        enabled: true
+        server-addr: ${NACOS_SERVER_HOST:localhost}:${NACOS_SERVER_PORT:8848}
+        username: ${NACOS_USERNAME:nacos}
+        password: ${NACOS_PASSWORD:nacos}
+        namespace: ${NACOS_NAMESPACE:public}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        file-extension: ${NACOS_FILE_EXTENSION:yaml}
