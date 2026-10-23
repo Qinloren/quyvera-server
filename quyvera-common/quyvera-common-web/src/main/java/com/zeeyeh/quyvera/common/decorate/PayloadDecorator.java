@@ -42,7 +42,7 @@ public class PayloadDecorator {
     }
 
     public boolean supports(Class<?> converterType) {
-        return !decorators.isEmpty() && IGNORED_CONVERTERS.stream().noneMatch(ignored -> ignored.isAssignableFrom(converterType));
+        return IGNORED_CONVERTERS.stream().noneMatch(ignored -> ignored.isAssignableFrom(converterType));
     }
 
     private void walk(JsonNode node, String path, DecoratorContext context) {
