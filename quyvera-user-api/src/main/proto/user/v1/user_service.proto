@@ -12,12 +12,12 @@ option java_outer_classname = "UserServiceApi";
 service UserService {
 
   /**
-   * 根据用户ID获取用户信息
+   * 根据用户Id获取用户信息
    */
   rpc GetUserById(GetUserByIdRequest) returns (UserInfo);
 
   /**
-   * 批量根据用户ID批量获取用户信息
+   * 批量根据用户Id批量获取用户信息
    */
   rpc BatchGetUserByIds(BatchGetUsersByIdsRequest) returns (BatchGetUserByIdsResponse);
 
@@ -45,6 +45,16 @@ service UserService {
    * 更新用户最后登录时间、ip
    */
   rpc UpdateLastLogin(UpdateLastLoginRequest) returns (UpdateLastLoginResponse);
+
+  /**
+   * 批量根据用户Id批量获取用户封禁信息
+   */
+  rpc BatchGetUserBanByIds(BatchGetUserBanByIdsRequest) returns (BatchGetUserBanByIdsResponse);
+
+  /**
+   * 批量根据用户Id批量获取用户信息
+   */
+  rpc BatchGetUserProfileByIds(BatchGetUserProfileByIdsRequest) returns (BatchGetUserProfileByIdsResponse);
 }
 
 message GetUserByIdRequest {
@@ -52,6 +62,14 @@ message GetUserByIdRequest {
 }
 
 message BatchGetUsersByIdsRequest {
+  repeated int64 user_ids = 1;
+}
+
+message BatchGetUserBanByIdsRequest {
+  repeated int64 user_ids = 1;
+}
+
+message BatchGetUserProfileByIdsRequest {
   repeated int64 user_ids = 1;
 }
 
@@ -88,6 +106,41 @@ message BatchGetUserByIdsResponse {
   repeated UserInfo users = 1;
 }
 
+message BatchGetUserBanByIdsResponse {
+  repeated UserBanInfo user_bans = 1;
+}
+
+message BatchGetUserProfileByIdsResponse {
+  repeated UserProfileInfo user_profiles = 1;
+}
+
+message UserProfileInfo {
+  int64 id = 1;
+  int64 user_id = 2;
+  string nickname = 3;
+  UserGender gender = 4;
+  int64 birthday = 5;
+  string bio = 6;
+  string location = 7;
+  string signature = 8;
+  string website = 9;
+  string avatar = 10;
+  int64 create_time = 11;
+  int64 update_time = 12;
+}
+
+message UserBanInfo {
+  int64 id = 1;
+  int64 user_id = 2;
+  string reason = 3;
+  int64 operator_id = 4;
+  int64 start_time = 5;
+  int64 expire_time = 6;
+  UserBanStatus status = 7;
+  int64 create_time = 8;
+  int64 update_time = 9;
+}
+
 message UserInfo {
   int64 user_id = 1;
   string username = 2;
@@ -99,6 +152,17 @@ message UserInfo {
   string last_login_ip = 8;
   int64 create_time = 9;
   int64 update_time = 10;
+}
+
+enum UserGender {
+  USER_GENDER_FEMALE = 0;
+  USER_GENDER_MALE = 1;
+  USER_GENDER_UNKNOWN = 2;
+}
+
+enum UserBanStatus {
+  USER_BAN_STATUS_BLOCKED = 0;
+  USER_BAN_STATUS_UNBLOCKED = 1;
 }
 
 enum UserStatus {
