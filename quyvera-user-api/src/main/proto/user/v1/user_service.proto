@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package quyvera.user.v1;
+
+option java_multiple_files = true;
+option java_package = "com.zeeyeh.quyvera.user.api.v1";
+option java_outer_classname = "UserServiceApi";
+
+/**
+ * 用户服务
+ */
+service UserService {
+
+  /**
+   * 根据用户ID获取用户信息
+   */
+  rpc GetUserById(GetUserByIdRequest) returns (UserInfo);
+
+  /**
+   * 批量根据用户ID批量获取用户信息
+   */
+  rpc BatchGetUserByIds(BatchGetUsersByIdsRequest) returns (BatchGetUserByIdsResponse);
+
+  /**
+   * 根据用户名获取用户信息
+   */
+  rpc GetUserByUsername(GetUserByUsernameRequest) returns (UserInfo);
+
+  /**
+   * 根据手机号获取用户信息
+   */
+  rpc GetUserByPhone(GetUserByPhoneRequest) returns (UserInfo);
+
+  /**
+   * 根据邮箱获取用户信息
+   */
+  rpc GetUserByEmail(GetUserByEmailRequest) returns (UserInfo);
+
+  /**
+   * 验证密码
+   */
+  rpc VerifyPassword(VerifyPasswordRequest) returns (VerifyPasswordResponse);
+
+  /**
+   * 更新用户最后登录时间、ip
+   */
+  rpc UpdateLastLogin(UpdateLastLoginRequest) returns (UpdateLastLoginResponse);
+}
+
+message GetUserByIdRequest {
+  int64 user_id = 1;
+}
+
+message BatchGetUsersByIdsRequest {
+  repeated int64 user_ids = 1;
+}
+
+message GetUserByUsernameRequest {
+  string username = 1;
+}
+
+message GetUserByPhoneRequest {
+  string phone = 1;
+}
+
+message GetUserByEmailRequest {
+  string email = 1;
+}
+
+message VerifyPasswordRequest {
+  int64 user_id = 1;
+  string password = 2;
+}
+
+message VerifyPasswordResponse {
+  bool matched = 1;
+}
+
+message UpdateLastLoginRequest {
+  int64 user_id = 1;
+  string login_ip = 2;
+}
+
+message UpdateLastLoginResponse {
+}
+
+message BatchGetUserByIdsResponse {
+  repeated UserInfo users = 1;
+}
+
+message UserInfo {
+  int64 user_id = 1;
+  string username = 2;
+  string phone = 3;
+  string email = 4;
+  UserStatus status = 5;
+  string register_ip = 6;
+  int64 last_login_time = 7;
+  string last_login_ip = 8;
+  int64 create_time = 9;
+  int64 update_time = 10;
+}
+
+enum UserStatus {
+  USER_STATUS_NORMAL = 0;
+  USER_STATUS_DISABLED = 1;
+  USER_STATUS_UNAUTHORIZED = 2;
+}
