@@ -16,6 +16,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <quyvera-common-core.version>0.0.1</quyvera-common-core.version>
+        <quyvera-user-api.version>0.0.1</quyvera-user-api.version>
     </properties>
 
     <dependencies>
@@ -23,6 +24,15 @@
             <groupId>com.zeeyeh</groupId>
             <artifactId>quyvera-common-core</artifactId>
             <version>${quyvera-common-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zeeyeh</groupId>
+            <artifactId>quyvera-user-api</artifactId>
+            <version>${quyvera-user-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.grpc</groupId>
+            <artifactId>spring-grpc-client-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
