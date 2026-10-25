@@ -1,2 +1,3 @@
 com.zeeyeh.quyvera.common.config.AppSecurityConfiguration
 com.zeeyeh.quyvera.common.config.AppLocaleConfiguration
+com.zeeyeh.quyvera.common.config.RedisConfiguration
