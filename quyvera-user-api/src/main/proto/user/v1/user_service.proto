@@ -6,52 +6,52 @@ option java_multiple_files = true;
 option java_package = "com.zeeyeh.quyvera.user.api.v1";
 option java_outer_classname = "UserServiceApi";
 
-/**
+/*
  * 用户服务
  */
 service UserService {
 
-  /**
+  /*
    * 根据用户Id获取用户信息
    */
   rpc GetUserById(GetUserByIdRequest) returns (UserInfo);
 
-  /**
+  /*
    * 批量根据用户Id批量获取用户信息
    */
   rpc BatchGetUserByIds(BatchGetUsersByIdsRequest) returns (BatchGetUserByIdsResponse);
 
-  /**
+  /*
    * 根据用户名获取用户信息
    */
   rpc GetUserByUsername(GetUserByUsernameRequest) returns (UserInfo);
 
-  /**
+  /*
    * 根据手机号获取用户信息
    */
   rpc GetUserByPhone(GetUserByPhoneRequest) returns (UserInfo);
 
-  /**
+  /*
    * 根据邮箱获取用户信息
    */
   rpc GetUserByEmail(GetUserByEmailRequest) returns (UserInfo);
 
-  /**
+  /*
    * 验证密码
    */
   rpc VerifyPassword(VerifyPasswordRequest) returns (VerifyPasswordResponse);
 
-  /**
+  /*
    * 更新用户最后登录时间、ip
    */
   rpc UpdateLastLogin(UpdateLastLoginRequest) returns (UpdateLastLoginResponse);
 
-  /**
+  /*
    * 批量根据用户Id批量获取用户封禁信息
    */
   rpc BatchGetUserBanByIds(BatchGetUserBanByIdsRequest) returns (BatchGetUserBanByIdsResponse);
 
-  /**
+  /*
    * 批量根据用户Id批量获取用户信息
    */
   rpc BatchGetUserProfileByIds(BatchGetUserProfileByIdsRequest) returns (BatchGetUserProfileByIdsResponse);
