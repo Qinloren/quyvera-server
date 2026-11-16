@@ -3,6 +3,7 @@ package com.zeeyeh.quyvera.plugin.sdk;
 import com.zeeyeh.quyvera.plugin.sdk.entity.PluginMeta;
 import com.zeeyeh.quyvera.plugin.sdk.event.Event;
 import com.zeeyeh.quyvera.plugin.sdk.event.EventRegistry;
+import com.zeeyeh.quyvera.plugin.sdk.service.PluginServiceInvoker;
 import lombok.Data;
 
 import java.io.File;
@@ -27,6 +28,8 @@ public abstract class AbstractPlugin {
     private PluginMeta pluginMeta;
     private String pluginName;
     private EventRegistry eventRegistry;
+    private PluginServiceInvoker serviceRegistry;
+    private PluginServiceInvoker serviceInvoker;
 
     public AbstractPlugin(File runtimeFolder) {
         this.runtimeFolder = runtimeFolder;
@@ -135,5 +138,23 @@ public abstract class AbstractPlugin {
             throw new IllegalStateException("插件 %s 事件注册器尚未初始化".formatted(pluginName()));
         }
         return eventRegistry;
+    }
+
+    public final void attachServiceInvoker(PluginServiceInvoker serviceInvoker) {
+        if (this.serviceInvoker != null) {
+            throw new IllegalStateException("插件服务调用器已注入");
+        }
+        this.serviceInvoker = serviceInvoker;
+    }
+
+    protected final Object invoke(String api, Map<String, Object> params) {
+        if (serviceInvoker == null) {
+            throw new IllegalStateException("插件服务调用器未注入");
+        }
+        return serviceInvoker.invoke(api, params);
+    }
+
+    protected final Object invoke(String api) {
+        return invoke(api, Map.of());
     }
 }

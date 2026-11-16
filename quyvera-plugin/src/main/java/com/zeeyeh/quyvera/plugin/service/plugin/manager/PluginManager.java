@@ -6,6 +6,7 @@ import com.zeeyeh.quyvera.plugin.sdk.enums.PluginState;
 import com.zeeyeh.quyvera.plugin.service.plugin.event.PluginEventRegistry;
 import com.zeeyeh.quyvera.plugin.service.plugin.loader.PluginLoader;
 import com.zeeyeh.quyvera.plugin.service.plugin.runtime.PluginRuntime;
+import com.zeeyeh.quyvera.plugin.service.plugin.service.PluginServiceInvokerFactory;
 import org.jspecify.annotations.NonNull;
 
 import java.util.*;
@@ -38,6 +39,8 @@ public final class PluginManager {
 
     private final PluginLoader pluginLoader;
 
+    private final PluginServiceInvokerFactory serviceInvokerFactory;
+
     /**
      * 正常运行的插件。
      *
@@ -62,7 +65,8 @@ public final class PluginManager {
 
     public PluginManager(
             PluginLoader pluginLoader,
-            EventManager eventManager
+            EventManager eventManager,
+            PluginServiceInvokerFactory serviceInvokerFactory
     ) {
         this.pluginLoader = Objects.requireNonNull(
                 pluginLoader,
@@ -72,6 +76,11 @@ public final class PluginManager {
         this.eventManager = Objects.requireNonNull(
                 eventManager,
                 "eventManager"
+        );
+
+        this.serviceInvokerFactory = Objects.requireNonNull(
+                serviceInvokerFactory,
+                "serviceInvokerFactory"
         );
     }
 
@@ -158,6 +167,8 @@ public final class PluginManager {
                             PluginState.DISCOVERED,
                             PluginState.INITIALIZING
                     );
+
+                    runtime.getPlugin().attachServiceInvoker(serviceInvokerFactory.create(runtime.getName()));
 
                     /*
                      * 在调用 init() 之前记录。
@@ -267,6 +278,10 @@ public final class PluginManager {
                         runtime,
                         PluginState.DISCOVERED,
                         PluginState.INITIALIZING
+                );
+
+                runtime.getPlugin().attachServiceInvoker(
+                        serviceInvokerFactory.create(runtime.getName())
                 );
 
                 lifecycleStarted = true;
