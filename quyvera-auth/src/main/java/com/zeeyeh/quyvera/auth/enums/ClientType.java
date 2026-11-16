@@ -1,0 +1,23 @@
+package com.zeeyeh.quyvera.auth.enums;
+
+import com.zeeyeh.quyvera.common.core.enums.BaseEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+/**
+ * @author Qinloren
+ * @date 2026/10/23 23:37
+ */
+@Getter
+@AllArgsConstructor
+public enum ClientType implements BaseEnum<Integer> {
+    WEB(0, "web"),
+    WINDOWS(1, "windows"),
+    MACOS(2, "macos"),
+    LINUX(3, "linux"),
+    ANDROID(4, "android"),
+    IOS(5, "ios")
+    ;
+    private final Integer value;
+    private final String description;
+}
