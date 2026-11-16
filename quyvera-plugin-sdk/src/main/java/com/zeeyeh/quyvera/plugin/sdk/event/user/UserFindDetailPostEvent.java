@@ -1,6 +1,7 @@
 package com.zeeyeh.quyvera.plugin.sdk.event.user;
 
 import com.zeeyeh.quyvera.plugin.sdk.event.Event;
+import com.zeeyeh.quyvera.plugin.sdk.event.user.enums.UserStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
