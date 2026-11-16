@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeeyeh.quyvera.plugin.mapper.PluginMapper">
+
+    <resultMap id="BaseResultMap" type="com.zeeyeh.quyvera.plugin.domain.Plugin">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="pluginCode" column="plugin_code" jdbcType="VARCHAR"/>
+            <result property="pluginName" column="plugin_name" jdbcType="VARCHAR"/>
+            <result property="version" column="version" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="author" column="author" jdbcType="VARCHAR"/>
+            <result property="isEnabled" column="is_enabled" jdbcType="TINYINT"/>
+            <result property="installTime" column="install_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,plugin_code,plugin_name,version,description,author,
+        is_enabled,install_time,create_time,update_time
+    </sql>
+</mapper>
