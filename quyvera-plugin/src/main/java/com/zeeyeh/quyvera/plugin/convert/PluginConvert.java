@@ -5,6 +5,8 @@ import com.zeeyeh.quyvera.plugin.vo.PluginVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
+import java.util.List;
+
 /**
  * 插件转换器接口
  * @author Qinloren
@@ -19,4 +21,11 @@ public interface PluginConvert {
      * @return 插件视图对象
      */
     PluginVo toVo(Plugin plugin);
+
+    /**
+     * 将插件列表转换为插件视图列表
+     * @param plugins 插件列表
+     * @return 插件视图列表
+     */
+    List<PluginVo> toVoList(List<Plugin> plugins);
 }
