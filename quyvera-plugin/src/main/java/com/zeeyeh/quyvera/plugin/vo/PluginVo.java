@@ -1,7 +1,5 @@
 package com.zeeyeh.quyvera.plugin.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -30,6 +28,11 @@ public class PluginVo {
      * 插件名称
      */
     private String pluginName;
+
+    /**
+     * 存储文件名称
+     */
+    private String filename;
 
     /**
      * 版本号
