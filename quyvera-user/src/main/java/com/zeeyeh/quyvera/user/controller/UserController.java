@@ -1,6 +1,9 @@
 package com.zeeyeh.quyvera.user.controller;
 
+import com.zeeyeh.common.plugin.annotations.PluginEvent;
+import com.zeeyeh.common.plugin.annotations.PluginParam;
 import com.zeeyeh.quyvera.common.core.entity.PageResult;
+import com.zeeyeh.quyvera.plugin.sdk.event.user.*;
 import com.zeeyeh.quyvera.user.dto.*;
 import com.zeeyeh.quyvera.user.service.UserBanService;
 import com.zeeyeh.quyvera.user.service.UserProfileService;
@@ -36,6 +39,8 @@ public class UserController {
      */
     @PostMapping("/create")
     @ResponseBody
+    @PluginEvent(UserCreatePreEvent.class)
+    @PluginEvent(value = UserCreatePostEvent.class, phase = PluginEvent.Phase.POST)
     public UserVo create(@RequestBody UserCreateDto dto) {
         return userService.createUser(dto);
     }
@@ -47,6 +52,14 @@ public class UserController {
      */
     @PostMapping("/update/{uid}")
     @ResponseBody
+    @PluginEvent(
+            value = UserUpdatePreEvent.class,
+            params = {
+                    @PluginParam(name = "userId", mode = PluginParam.Mode.PROPERTY),
+                    @PluginParam(name = "dto", mode = PluginParam.Mode.BEAN)
+            }
+    )
+    @PluginEvent(value = UserUpdatePostEvent.class, phase = PluginEvent.Phase.POST)
     public UserVo update(@PathVariable("uid") Long userId, @RequestBody UserUpdateDto dto) {
         return userService.updateUser(userId, dto);
     }
@@ -57,6 +70,8 @@ public class UserController {
      */
     @GetMapping("/detail/{uid}")
     @ResponseBody
+    @PluginEvent(UserFindDetailPreEvent.class)
+    @PluginEvent(value = UserFindDetailPostEvent.class, phase = PluginEvent.Phase.POST)
     public UserVo detail(@PathVariable("uid") Long userId) {
         return userService.getUserById(userId);
     }
@@ -68,6 +83,8 @@ public class UserController {
      */
     @GetMapping("/search")
     @ResponseBody
+    @PluginEvent(UserSearchPreEvent.class)
+    @PluginEvent(value = UserSearchPostEvent.class, phase = PluginEvent.Phase.POST)
     public PageResult<UserVo> search(UserPageQueryDto dto) {
         return userService.pageQuery(dto);
     }
@@ -79,6 +96,8 @@ public class UserController {
      */
     @PostMapping("/update/password/{uid}")
     @ResponseBody
+    @PluginEvent(UserUpdatePasswordPreEvent.class)
+    @PluginEvent(value = UserUpdatePasswordPostEvent.class, phase =  PluginEvent.Phase.POST)
     public void updatePassword(@PathVariable("uid") Long userId, UserPasswordUpdateDto dto) {
         userService.updatePassword(userId, dto.getOldPassword(), dto.getNewPassword());
     }
@@ -90,6 +109,8 @@ public class UserController {
      */
     @PostMapping("/update/status/{uid}")
     @ResponseBody
+    @PluginEvent(UserUpdateStatusPreEvent.class)
+    @PluginEvent(value = UserUpdateStatusPostEvent.class, phase = PluginEvent.Phase.POST)
     public void updateStatus(@PathVariable("uid") Long userId, @RequestBody UserUpdateStatusDto dto) {
         userService.updateStatus(userId, dto.getStatus());
     }
@@ -101,19 +122,23 @@ public class UserController {
      */
     @PostMapping("/ban")
     @ResponseBody
+    @PluginEvent(UserBanPreEvent.class)
+    @PluginEvent(value = UserBanPostEvent.class, phase = PluginEvent.Phase.POST)
     public UserBanVo banUser(@RequestBody UserBanDto dto) {
         return userBanService.banUser(dto);
     }
 
     /**
      * 解封用户
-     * @param uid 用户Id
+     * @param userId 用户Id
      * @return 用户信息
      */
     @PostMapping("/unban/{uid}")
     @ResponseBody
-    public UserBanVo unbanUser(@PathVariable Long uid) {
-        return userBanService.unbanUser(uid);
+    @PluginEvent(UserUnBanPreEvent.class)
+    @PluginEvent(value = UserUnBanPostEvent.class, phase = PluginEvent.Phase.POST)
+    public UserBanVo unbanUser(@PathVariable("uid") Long userId) {
+        return userBanService.unbanUser(userId);
     }
 
     /**
@@ -123,7 +148,9 @@ public class UserController {
      */
     @GetMapping("/ban/detail/{uid}")
     @ResponseBody
-    public UserBanVo detailBanUser(@PathVariable("uid")  Long userId) {
+    @PluginEvent(UserFindBanDetailPreEvent.class)
+    @PluginEvent(value = UserFindBanDetailPostEvent.class, phase = PluginEvent.Phase.POST)
+    public UserBanVo detailBanUser(@PathVariable("uid") Long userId) {
         return userBanService.getUserBanInfo(userId);
     }
 
@@ -134,6 +161,8 @@ public class UserController {
      */
     @GetMapping("/ban/search")
     @ResponseBody
+    @PluginEvent(UserSearchBanPreEvent.class)
+    @PluginEvent(value = UserSearchBanPostEvent.class, phase = PluginEvent.Phase.POST)
     public PageResult<UserBanVo> searchBan(UserBanPageQueryDto dto) {
         return userBanService.pageQuery(dto);
     }
@@ -145,6 +174,8 @@ public class UserController {
      */
     @GetMapping("/ban/check/{uid}")
     @ResponseBody
+    @PluginEvent(UserCheckBanPreEvent.class)
+    @PluginEvent(value = UserCheckBanPostEvent.class, phase = PluginEvent.Phase.POST, returnProperty = "banned")
     public boolean checkUserBan(@PathVariable("uid") Long userId) {
         return userBanService.checkUserBan(userId);
     }
@@ -156,6 +187,14 @@ public class UserController {
      */
     @PostMapping("/update/profile/{uid}")
     @ResponseBody
+    @PluginEvent(
+            value = UserUpdateProfilePreEvent.class,
+            params = {
+                    @PluginParam(name = "userId", mode = PluginParam.Mode.PROPERTY),
+                    @PluginParam(name = "dto", mode = PluginParam.Mode.BEAN)
+            }
+    )
+    @PluginEvent(value = UserUpdateProfilePostEvent.class, phase = PluginEvent.Phase.POST)
     public UserProfileVo updateProfile(@PathVariable("uid") Long userId, @RequestBody UserProfileUpdateDto dto) {
         return userProfileService.updateProfile(userId, dto);
     }
@@ -167,6 +206,8 @@ public class UserController {
      */
     @GetMapping("/profile/detail/{uid}")
     @ResponseBody
+    @PluginEvent(UserFindProfileDetailPreEvent.class)
+    @PluginEvent(value = UserFindProfileDetailPostEvent.class, phase = PluginEvent.Phase.POST)
     public UserProfileVo detailProfile(@PathVariable("uid") Long userId) {
         return userProfileService.getProfileByUserId(userId);
     }
@@ -178,6 +219,8 @@ public class UserController {
      */
     @GetMapping("/profile/exists/{uid}")
     @ResponseBody
+    @PluginEvent(UserHasProfilePreEvent.class)
+    @PluginEvent(value = UserHasProfilePostEvent.class, phase = PluginEvent.Phase.POST)
     public boolean hasProfile(@PathVariable("uid") Long userId) {
         return userProfileService.hasProfile(userId);
     }
