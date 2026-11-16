@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package quyvera.plugin.v1;
+
+option java_multiple_files = true;
+option java_package = "com.zeeyeh.quyvera.plugin.api.v1";
+option java_outer_classname = "PluginServiceApi";
+
+/*
+ * 插件服务
+ */
+service PluginService {
+
+  /*
+   * 根据id获取插件信息
+   */
+  rpc GetPluginInfoById(GetPluginInfoByIdRequest) returns (GetPluginInfoByIdResponse);
+
+  /*
+   * 根据名称获取插件信息
+   */
+  rpc GetPluginInfoByName(GetPluginInfoByNameRequest) returns (GetPluginInfoByNameResponse);
+
+  /*
+   * 根据编码获取插件信息
+   */
+  rpc GetPluginInfoByCode(GetPluginInfoByCodeRequest) returns (GetPluginInfoByCodeResponse);
+
+  /*
+   * 批量根据id获取插件信息
+   */
+  rpc BatchGetPluginInfoByIds(BatchGetPluginInfoByIdsRequest) returns (BatchGetPluginInfoByIdsResponse);
+}
+
+message GetPluginInfoByIdRequest {
+  int64 plugin_id = 1;
+}
+
+message GetPluginInfoByIdResponse {
+  PluginInfo plugin_info = 1;
+}
+
+message GetPluginInfoByNameRequest {
+  string plugin_name = 1;
+}
+
+message GetPluginInfoByNameResponse {
+  PluginInfo plugin_info = 1;
+}
+
+message GetPluginInfoByCodeRequest {
+  string plugin_code = 1;
+}
+
+message GetPluginInfoByCodeResponse {
+  PluginInfo plugin_info = 1;
+}
+
+message BatchGetPluginInfoByIdsRequest {
+  repeated int64 plugin_ids = 1;
+}
+
+message BatchGetPluginInfoByIdsResponse {
+  repeated PluginInfo plugin_infos = 1;
+}
+
+message PluginInfo {
+  int64 id = 1;
+  string plugin_code = 2;
+  string plugin_name = 3;
+  string filename = 4;
+  string description = 5;
+  string author = 6;
+  bool is_enabled = 7;
+  int64 install_time = 8;
+  int64 create_time = 9;
+  int64 update_time = 10;
+}
