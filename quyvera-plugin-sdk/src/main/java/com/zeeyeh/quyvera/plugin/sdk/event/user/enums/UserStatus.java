@@ -1,0 +1,21 @@
+package com.zeeyeh.quyvera.plugin.sdk.event.user.enums;
+
+import com.zeeyeh.quyvera.common.core.enums.BaseEnum;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+/**
+ * 用户状态枚举
+ * @author Qinloren
+ * @date 2026/11/16 17:17
+ */
+@Getter
+@RequiredArgsConstructor
+public enum UserStatus implements BaseEnum<Integer> {
+    NORMAL(0, "正常"),
+    DISABLE(1, "禁用"),
+    UNAUTHORIZED(2, "未验证"),
+    ;
+    private final Integer value;
+    private final String description;
+}
