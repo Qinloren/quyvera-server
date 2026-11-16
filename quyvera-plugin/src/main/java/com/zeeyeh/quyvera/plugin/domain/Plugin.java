@@ -39,6 +39,12 @@ public class Plugin implements Serializable {
     private String pluginName;
 
     /**
+     * 存储文件名称
+     */
+    @TableField(value = "filename")
+    private String filename;
+
+    /**
      * 版本号
      */
     @TableField(value = "version")
