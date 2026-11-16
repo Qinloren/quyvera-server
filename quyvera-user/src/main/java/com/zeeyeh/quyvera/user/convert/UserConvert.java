@@ -4,6 +4,7 @@ import com.zeeyeh.quyvera.user.domain.User;
 import com.zeeyeh.quyvera.user.dto.UserCreateDto;
 import com.zeeyeh.quyvera.user.vo.UserVo;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
@@ -21,6 +22,13 @@ public interface UserConvert {
      * @param dto 用户创建请求参数对象
      * @return 实体对象
      */
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "registerIp", ignore = true)
+    @Mapping(target = "lastLoginTime", ignore = true)
+    @Mapping(target = "lastLoginIp", ignore = true)
+    @Mapping(target = "createTime", ignore = true)
+    @Mapping(target = "updateTime", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     User toEntity(UserCreateDto dto);
 
     /**
