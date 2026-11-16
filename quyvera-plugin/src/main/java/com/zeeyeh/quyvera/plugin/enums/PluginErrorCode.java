@@ -16,6 +16,10 @@ public enum PluginErrorCode implements ErrorCode {
     PLUGIN_PATH_INVALID(33003, "error.plugin.path.invalid"),
     PLUGIN_UPLOAD_FAILED(33004, "error.plugin.upload.failed"),
     PLUGIN_META_LOAD_FAILED(33005, "error.plugin.meta.load.failed"),
+    PLUGIN_NOT_FOUND(33006, "error.plugin.not.found"),
+    PLUGIN_ENABLE_FAILED(33006, "error.plugin.enable.failed"),
+    PLUGIN_ALREADY_ENABLED(33007, "error.plugin.already.enabled"),
+    PLUGIN_ALREADY_DISABLED(33007, "error.plugin.already.disabled"),
     ;
     private final Integer code;
     private final String key;
