@@ -16,6 +16,7 @@
         <module>quyvera-auth</module>
         <module>quyvera-plugin-sdk</module>
         <module>quyvera-plugin</module>
+        <module>quyvera-plugin-api</module>
     </modules>
 
     <properties>
@@ -23,6 +24,19 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <quyvera-common-core.version>0.0.1</quyvera-common-core.version>
+        <quyvera-common-plugin.version>0.0.1</quyvera-common-plugin.version>
+        <quyvera-common-web.version>0.0.1</quyvera-common-web.version>
+        <quyvera-common-auth.version>0.0.1</quyvera-common-auth.version>
+        <quyvera-common-plugin.version>0.0.1</quyvera-common-plugin.version>
+        <quyvera-common.version>0.0.1</quyvera-common.version>
+        <quyvera-gateway.version>0.0.1</quyvera-gateway.version>
+        <quyvera-user.version>0.0.1</quyvera-user.version>
+        <quyvera-user-api.version>0.0.1</quyvera-user-api.version>
+        <quyvera-auth.version>0.0.1</quyvera-auth.version>
+        <quyvera-plugin-sdk.version>0.0.1</quyvera-plugin-sdk.version>
+        <quyvera-plugin.version>0.0.1</quyvera-plugin.version>
+        <quyvera-plugin-api.version>0.0.1</quyvera-plugin-api.version>
         <spring-boot.version>4.0.0</spring-boot.version>
         <spring-cloud.version>2025.1.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2025.1.0.0</spring-cloud-alibaba.version>
@@ -138,6 +152,23 @@
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson2.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <parameters>true</parameters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

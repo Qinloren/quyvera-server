@@ -15,6 +15,7 @@
         <module>quyvera-common-core</module>
         <module>quyvera-common-web</module>
         <module>quyvera-common-auth</module>
+        <module>quyvera-common-plugin</module>
     </modules>
 
     <properties>

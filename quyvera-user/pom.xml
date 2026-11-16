@@ -15,9 +15,6 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <quyvera-common-core.version>0.0.1</quyvera-common-core.version>
-        <quyvera-common-web.version>0.0.1</quyvera-common-web.version>
-        <quyvera-user-api.version>0.0.1</quyvera-user-api.version>
     </properties>
 
     <dependencies>
@@ -25,6 +22,11 @@
             <groupId>com.zeeyeh</groupId>
             <artifactId>quyvera-common-core</artifactId>
             <version>${quyvera-common-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zeeyeh</groupId>
+            <artifactId>quyvera-common-plugin</artifactId>
+            <version>${quyvera-common-plugin.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zeeyeh</groupId>

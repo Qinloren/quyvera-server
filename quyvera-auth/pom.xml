@@ -15,11 +15,6 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <quyvera-common-core.version>0.0.1</quyvera-common-core.version>
-        <quyvera-common-web.version>0.0.1</quyvera-common-web.version>
-        <quyvera-common-auth.version>0.0.1</quyvera-common-auth.version>
-        <quyvera-user-api.version>0.0.1</quyvera-user-api.version>
-        <quyvera-plugin-sdk.version>0.0.1</quyvera-plugin-sdk.version>
     </properties>
 
     <dependencies>

@@ -16,9 +16,8 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <quyvera-common-core.version>0.0.1</quyvera-common-core.version>
-        <quyvera-common-web.version>0.0.1</quyvera-common-web.version>
-        <quyvera-plugin-sdk.version>0.0.1</quyvera-plugin-sdk.version>
+        <maven-resolver.version>2.0.25</maven-resolver.version>
+        <maven.version>3.9.16</maven.version>
     </properties>
 
     <dependencies>
@@ -26,6 +25,16 @@
             <groupId>com.zeeyeh</groupId>
             <artifactId>quyvera-common-core</artifactId>
             <version>${quyvera-common-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zeeyeh</groupId>
+            <artifactId>quyvera-plugin-api</artifactId>
+            <version>${quyvera-plugin-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zeeyeh</groupId>
+            <artifactId>quyvera-plugin-sdk</artifactId>
+            <version>${quyvera-plugin-sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.grpc</groupId>
@@ -38,8 +47,8 @@
         </dependency>
         <dependency>
             <groupId>com.zeeyeh</groupId>
-            <artifactId>quyvera-plugin-sdk</artifactId>
-            <version>${quyvera-plugin-sdk.version}</version>
+            <artifactId>quyvera-common-plugin</artifactId>
+            <version>${quyvera-common-plugin.version}</version>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -68,6 +77,32 @@
         <dependency>
             <groupId>io.github.linpeilie</groupId>
             <artifactId>mapstruct-plus-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-api</artifactId>
+            <version>${maven-resolver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-impl</artifactId>
+            <version>${maven-resolver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-supplier-mvn3</artifactId>
+            <version>${maven-resolver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-connector-basic</artifactId>
+            <version>${maven-resolver.version}</version>
         </dependency>
     </dependencies>
 </project>
