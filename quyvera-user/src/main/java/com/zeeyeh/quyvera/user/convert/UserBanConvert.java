@@ -4,6 +4,7 @@ import com.zeeyeh.quyvera.user.domain.UserBan;
 import com.zeeyeh.quyvera.user.dto.UserBanDto;
 import com.zeeyeh.quyvera.user.vo.UserBanVo;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
@@ -21,6 +22,11 @@ public interface UserBanConvert {
      * @param dto 用户封禁请求参数
      * @return 用户封禁实体
      */
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "operatorId", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "createTime", ignore = true)
+    @Mapping(target = "updateTime", ignore = true)
     UserBan toEntity(UserBanDto dto);
 
     /**
